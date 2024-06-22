@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <title>HumanityR</title>
+        <link rel = "stylesheet" href = "/PROTTYPE - SE/Prototype PKM-KC (Web Version)/Volunteer/LoginRegister/signup.css">
+    </head>
+
+    <body class = "background">
+        
+        <div class="title">
+            <h1>Sign Up as Organizer</h1>
+        </div>
+        <div class="center">
+            <div class="container">
+                <div class="image">
+                <img class = "signup-img" src = "/PROTTYPE - SE/Prototype PKM-KC (Web Version)/img/img2.png" width = "400" height = "300">
+                </div>
+                <div class = "data">
+                    <form id = "signup" action = "event.html">
+                        <br><input type = "text" placeholder = "Name" class = "input-box" id = "name" name = "name"><br><br>
+                        <input type = "number" placeholder = "Phone Number" class = "input-box" id = "phone" name = "phone"><br><br>
+                        <input type = "text" placeholder = "Username" class = "input-box" id = "username" name = "username"><br><br>
+                        <input type = "password" placeholder = "Password" class = "input-box" id = "password" name = "password"><br><br>
+                        <!-- <input type = "submit" value = "Sign Up" class = "input-box"> -->
+                        <button class = "button" type = "button" onclick = "saveData()">Sign Up</button>
+                    </form>
+                </div>
+            </div>  
+                <div class="note">
+                    <p class = "string">Already have an account? <a href = "organizerLogin.html">Log In</a></p>
+                    <p class = "string">Back to the beginning page? <a href = "/PROTTYPE - SE/Prototype PKM-KC (Web Version)/Home/index.html">Back</a></p>
+                </div>
+            </div>
+
+        <script>
+            function saveData(){
+                var name = document.getElementById('name').value;
+                var phone = document.getElementById('phone').value;
+                var username = document.getElementById('username').value;
+                var password = document.getElementById('password').value;
+
+                // var storedName = JSON.parse(localStorage.getItem('name')) || [];
+                // var storedPhone = JSON.parse(localStorage.getItem('phone')) || [];
+                // var storedUsername = JSON.parse(localStorage.getItem('username')) || [];
+                // var storedPassword = JSON.parse(localStorage.getItem('password')) || [];
+                var valid = 0;
+
+                var storedOrganizer = JSON.parse(localStorage.getItem('organizers')) || [];
+                for(var i = 0; i < storedOrganizer.length; i++){
+                    if(username == storedOrganizer[i].organizerUsername){
+                        valid = 1;
+                        break;
+                    }
+                }
+                if(valid == 1){
+                    alert("Username is not available");
+                }
+                else{
+                    var organizer = {
+                    organizerName : name,
+                    organizerPhone : phone,
+                    organizerUsername : username,
+                    organizerPassword : password,
+                    organizerMadeEvent: []
+                }
+                    var organizers = JSON.parse(localStorage.getItem('organizers')) || [];
+
+                    organizers.push(organizer);
+                    localStorage.setItem('organizers', JSON.stringify(organizers));
+
+                    window.location.href = "organizerLogin.html";
+
+                    alert("Data Saved Successfully");
+                }
+                
+            }
+        </script>
+    </body>
+
+
+</html>

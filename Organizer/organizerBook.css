@@ -1,0 +1,161 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Quicksand', sans-serif;
+}
+
+body {
+    background-color: #CAFFB8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#joinedOrphanages {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    margin: 20px auto;
+    width: 80%;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.card {
+    flex-basis: calc(50% - 20px);
+    margin: 10px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    height: 250px;
+    background-color: white;
+}
+
+.card-content {
+    width: 100%;
+    text-align: left;
+    margin-top: 50px;
+
+
+}
+
+.card h2 {
+    text-align: center;
+    width: 108%;
+    height: 50px;
+    margin-top: -20px;
+    padding-top: 10px;
+    border-radius: 10px 10px 0 0;
+    background-color: #A0EA85;
+    color: #2B7411;
+
+}
+
+.card p {
+    margin-bottom: 10px;
+}
+
+.card button {
+    display: block;
+    cursor: pointer;
+    padding: 8px 16px;
+    margin: 10px 50px auto 10px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    bottom: 20px;
+    right: 20px;
+}
+
+.card button:hover {
+    background-color: #ff7e63;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.card button.accept {
+    background-color: #28a745;
+}
+
+.card button.reject {
+    background-color: #dc3545;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    padding: 15px;
+}
+
+.brand {
+    flex: 1;
+    padding-left: 40px;
+    margin-top: 5px;
+    text-decoration: none;
+    color: black;
+}
+
+.navbar {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.navbar a {
+    margin: 5px 10px;
+    color: black;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    color: #A0EA85;
+    transition: 0.5s;
+}
+
+.main-content {
+    text-align: center;
+    margin-top: 10px;
+    width: 93%;
+}
+
+.center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.text-content {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.image-content {
+    flex: 1;
+}
+
+.image-content img {
+    max-width: 100%;
+    height: auto;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.6;
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>HumanityR</title>
+    <link rel="stylesheet" href="organizerBook.css">
+</head>
+<body>
+    <header class="header">
+        <a class="brand" href="organizerIndex.html">Human Rights</a>
+        <div class="navbar">
+            <a href="organizerIndex.html">Home</a>
+            <a href="organizerEvent.html">Event</a>
+            <a href="organizerBook.html">Organizer</a>
+            <a href="/PROTTYPE - SE/Prototype PKM-KC (Web Version)/Home/index.html">Log Out</a>
+        </div>
+    </header>
+    <div id="joinedOrphanages"></div>
+
+    <script>
+        var joinedOrphanages = JSON.parse(localStorage.getItem('joinedOrphanages')) || [];
+
+        var joinedOrphanagesHTML = '';
+        if (joinedOrphanages.length > 0) {
+            joinedOrphanages.forEach(function(orphanage) {
+                joinedOrphanagesHTML += '<div class="card">';
+                joinedOrphanagesHTML += '<h2>' + orphanage.name + '</h2>';
+                joinedOrphanagesHTML += '<div class="card-content">';
+                joinedOrphanagesHTML += '<p>Address: ' + orphanage.address + '</p>';
+                joinedOrphanagesHTML += '<p>Contact: ' + orphanage.contact + '</p>';
+                joinedOrphanagesHTML += '<p class="status">Status: Waiting</p>';
+                joinedOrphanagesHTML += '<button class="accept" onclick="acceptBooking(1)">Accept</button>';
+                joinedOrphanagesHTML += '<button class="reject" onclick="rejectBooking(1)">Reject</button>';
+                joinedOrphanagesHTML += '</div>';
+                joinedOrphanagesHTML += '</div>';
+            });
+        } else {
+            joinedOrphanagesHTML = '<p>No orphanages joined yet.</p>';
+        }
+
+        document.getElementById('joinedOrphanages').innerHTML = joinedOrphanagesHTML;
+        
+       function acceptBooking(joinedOrphanages) {
+            const bookingElement = document.querySelector(`.booking[data-id="${joinedOrphanages}"]`);
+            if (bookingElement) {
+                updateBookingStatus(bookingElement, "accepted");
+            } else {
+                console.error(`Booking with ID ${joinedOrphanages} not found.`);
+            }
+        }
+
+        function rejectBooking(joinedOrphanages) {
+            const bookingElement = document.querySelector(`.booking[data-id="${joinedOrphanages}"]`);
+            if (bookingElement) {
+                updateBookingStatus(bookingElement, "rejected");
+            } else {
+                console.error(`Booking with ID ${joinedOrphanages} not found.`);
+            }
+        }
+
+        function updateBookingStatus(bookingElement, status) {
+            const statusElement = bookingElement.querySelector('.status');
+            if (statusElement) {
+                statusElement.textContent = `Status: ${status}`;
+            } else {
+                console.error('Status element not found.');
+            }
+        }
+
+    </script>
+
+</body>
+</html>

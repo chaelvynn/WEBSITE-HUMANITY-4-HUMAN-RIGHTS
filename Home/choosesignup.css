@@ -1,0 +1,39 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #CAFFB8; 
+}
+
+.firstPageCenter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.string {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #000000;
+}
+
+.button {
+    margin: 10px 0;
+    padding: 10px 20px;
+    background-color: #5FCF38;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    width: 200px;
+}
+
+.button:hover {
+    background-color: #4CAF50;
+}

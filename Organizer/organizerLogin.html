@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>HumanityR</title>
+        <link rel = "stylesheet" href = "/PROTTYPE - SE/Prototype PKM-KC (Web Version)/Volunteer/LoginRegister/login.css">
+    </head>
+
+    <body class = "background">
+        <div class="title">
+            <h1>Login as Organizer</h1>
+        </div>
+        <div class = "center">
+            
+            <img src = "/PROTTYPE - SE/Prototype PKM-KC (Web Version)/img/img1.png" width = "350" height = "250">
+            
+            <form id = "login">
+                <br><input type = "text" placeholder = "Username" class = "input-box" id = "username" name = "username"><br><br>
+                <input type = "password" placeholder = "Password" class = "input-box" id = "password" name = "password"><br><br>
+                <button class = "button" type = "button" onclick = "loginCheck()">Log In</button>
+            </form>
+
+            <p class = "string">Don't have an account? <a href = "organizerSignup.html">Sign Up</a></p>
+            <p class = "string">Back to the previous page? <a href = "/PROTTYPE - SE/Prototype PKM-KC (Web Version)/Home/index.html">Back</a></p>
+        </div>
+
+        <script>
+            function loginCheck(){
+                var username = document.getElementById('username').value;
+                var password = document.getElementById('password').value;
+
+                var storedOrganizers = JSON.parse(localStorage.getItem('organizers'));
+                
+                var valid = 0;
+                for(var i = 0; i < storedOrganizers.length; i++){
+                    if(username == storedOrganizers[i].organizerUsername){
+                        valid = 1;
+                        if(password == storedOrganizers[i].organizerPassword){
+                            valid = 2;
+                            break;
+                        }
+                    }
+                }
+                if(valid == 2){
+                    sessionStorage.setItem('organizerUsername', username);
+                    sessionStorage.setItem('organizerPassword', password);
+                    window.location.href = "organizerIndex.html"; 
+                }
+                if(valid == 1){
+                    console.log("Your Password is not valid");
+                    alert("Your Password is not valid");
+                }
+                if(valid == 0){
+                    console.log("Your Username is not valid");
+                    alert("Your Username is not valid")
+                }
+                };
+
+                
+                
+        </script>
+    </body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="event.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Home</title>
+</head>
+<body>
+    <main>
+        <div class="title">
+            <div class="nama">
+                <p>Human Rights</p>
+            </div>
+            <div class="navbar">
+                <a href="home.html">Home</a>
+                <a href="organizer.html">Organizer</a>
+                <a href="event.html">Event</a>
+                <a href="join.html">Join</a>
+                <a href="/PROTTYPE - SE/Prototype PKM-KC (Web Version)/Home/index.html">Log Out</a>
+                <a href="profile.html"><i class="fa-solid fa-user"></i></a>
+            </div>  
+        </div>
+
+        <div class="banner">
+            <img src="/PROTTYPE - SE/Prototype PKM-KC (Web Version)/img/img3.png">
+
+        </div>
+
+        <div class="content">
+            <!-- Kotak-kotak panti akan ditambahkan di sini -->
+        </div>
+    </main>
+
+    <script>
+        // Data 8 panti asuhan dengan URL gambar
+        var orphanages = [
+            { id: 1, name: "Panti Asuhan Panca", img: "img/pantiA.png" },
+            { id: 2, name: "Panti Rumah Buah Hati", img: "img/pantiB.jpeg" },
+            { id: 3, name: "Yayasan Cahaya Insani", img: "img/pantiC.jpg" },
+            { id: 4, name: "Panti Jompo Mitra", img: "img/pantiD.jpg" },
+            { id: 5, name: "Panti Asuhan Karuna", img: "img/pantiE.jpeg" },
+            { id: 6, name: "Panti Sosial Raga", img: "img/pantiF.jpg" },
+            { id: 7, name: "Panti Kasih Sayang", img: "img/pantiG.jpg" },
+            { id: 8, name: "Panti Upekha", img: "img/pantiH.jpeg" }
+        ];
+
+        // Ambil elemen container
+        var container = document.querySelector('.content');
+
+        // Loop melalui setiap panti dan tambahkan ke dalam HTML
+        orphanages.forEach(function(orphanage) {
+            var orphanageHTML = `
+                <div class="orphanage-box">
+                    <div class = "judul">
+                        <h3>${orphanage.name}</h3>
+                    </div>
+                    <div class "isi">
+                        <img src="${orphanage.img}" alt="${orphanage.name}">
+                        <button onclick="showMoreInfo(${orphanage.id})">More Information</button>
+                    </div>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', orphanageHTML);
+        });
+
+        // Fungsi untuk membuka halaman baru dengan informasi detail
+        function showMoreInfo(id) {
+            window.location.href = `moreinformation.html?id=${id}`;
+        }
+    </script>
+</body>
+</html>

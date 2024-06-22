@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="moreinformation.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Orphanage Details</title>
+</head>
+<body>
+    <main>
+        <div class="title">
+            <div class="nama">
+                <p>Human Rights</p>
+            </div>
+            <div class="navbar">
+                <a href="home.html">Home</a>
+                <a href="organizer.html">Organizer</a>
+                <a href="event.html">Event</a>
+                <a href="join.html">Join</a>
+                <a href="/PROTTYPE - SE/Prototype PKM-KC (Web Version)/Home/index.html">Log Out</a>
+                <a href="profile.html"><i class="fa-solid fa-user"></i></a>
+            </div>  
+        </div>
+        <div class="content">
+            <h1 id="orphanageName"></h1>
+            <div class="pisah">
+                <img id="orphanageImage" alt="Orphanage Image">
+                <div class="teks">
+                    <h2>Alamat</h2>
+                    <p id="orphanageAddress"></p>
+                    <p id="orphanageContact"></p>
+                </div>
+            </div>
+            <div class="pisah2">
+                <p id="orphanageDescription"></p>
+
+            </div>
+            <button onclick="joinOrphanage()">Join</button>
+
+        </div>
+    </main>
+    <script>
+        // Data 8 panti asuhan dengan URL gambar
+        var orphanages = [
+            { id: 1, name: "Panti Asuhan Panca", address: "Jl. Pajajaran No. 10", contact: "08123456789", description: "Panti Asuhan Panca menyediakan perawatan dan pendidikan bagi anak-anak yatim piatu dan terlantar.", img: "img/pantiA.png" },
+            { id: 2, name: "Panti Rumah Buah Hati", address: "Jl. Merdeka No. 51", contact: "087654321", description: "Panti Rumah Buah Hati berfokus pada kesejahteraan mental dan fisik anak-anak.", img: "img/pantiB.jpeg" },
+            { id: 3, name: "Yayasan Cahaya Insani", address: "Jl. Pasir Kaliki No. 90", contact: "08987654321", description: "Yayasan Cahaya Insani memberikan lingkungan yang aman dan penuh kasih sayang bagi anak-anak.", img: "img/pantiC.jpg" },
+            { id: 4, name: "Panti Jompo Mitra", address: "Jl. Asia Afrika No. 67 ", contact: "0854321789", description: "Panti Jompo Mitra menyediakan fasilitas dan pelayanan bagi para lansia.", img: "img/pantiD.jpg" },
+            { id: 5, name: "Panti Asuhan Karuna", address: "Jl. Sukajadi No. 99", contact: "08123456789", description: "Panti Asuhan Karuna menekankan pada pembinaan karakter dan keterampilan hidup.", img: "img/pantiE.jpeg" },
+            { id: 6, name: "Panti Sosial Raga", address: "Jl. Veteran No. 89", contact: "087654321", description: "Panti Sosial Raga fokus pada rehabilitasi dan reintegrasi anak-anak ke masyarakat.", img: "img/pantiF.jpg" },
+            { id: 7, name: "Panti Kasih Sayang", address: "Jl. Laswi No. 4", contact: "08987654321", description: "Panti Kasih Sayang berfokus pada anak-anak yang memerlukan kasih sayang dan perhatian khusus dari lingkungan sekitarnya.", img: "img/pantiG.jpg" },
+            { id: 8, name: "Panti Upekha", address: "Jl. A. Yani No. 119", contact: "0854321789", description: "Panti Upekha berupaya memberikan perawatan yang berkualitas tinggi dan penuh kasih sayang.", img: "img/pantiH.jpeg" }
+        ];
+
+        // Dapatkan parameter id dari URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const orphanageId = urlParams.get('id');
+
+        // Temukan panti berdasarkan id
+        var orphanage = orphanages.find(function(item) {
+            return item.id == orphanageId;
+        });
+
+        // Jika ditemukan, tampilkan detailnya
+        if (orphanage) {
+            document.getElementById('orphanageName').textContent = orphanage.name;
+            document.getElementById('orphanageImage').src = orphanage.img;
+            document.getElementById('orphanageAddress').textContent = "Address: " + orphanage.address;
+            document.getElementById('orphanageContact').textContent = "Contact: " + orphanage.contact;
+            document.getElementById('orphanageDescription').textContent = orphanage.description;
+        } else {
+            document.querySelector('.content').innerHTML = "<p>Orphanage not found.</p>";
+        }
+
+        // Fungsi untuk melakukan join pada panti
+        function joinOrphanage() {
+            // Mendapatkan data yang sudah di-join dari localStorage
+            var joinedOrphanages = JSON.parse(localStorage.getItem('joinedOrphanages')) || [];
+
+            // Menambahkan panti yang sedang dilihat ke dalam daftar yang sudah di-join
+            joinedOrphanages.push(orphanage);
+
+            // Menyimpan kembali data ke localStorage
+            localStorage.setItem('joinedOrphanages', JSON.stringify(joinedOrphanages));
+
+            alert("You have joined this orphanage.");
+        }
+    </script>
+</body>
+</html>

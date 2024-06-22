@@ -1,0 +1,57 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HumanityR</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body class="background">
+    <div class="title">
+        <h1>Login as Volunteer</h1>
+    </div>
+    <div class="center">
+        <img src="/PROTTYPE - SE/Prototype PKM-KC (Web Version)/img/img1.png" width="350" height="250">
+        <form id="login">
+            <br>
+            <input type="text" placeholder="Username" class="input-box" id="username" name="username"><br><br>
+            <input type="password" placeholder="Password" class="input-box" id="password" name="password"><br><br>
+            <button class="button" type="button" onclick="loginCheck()">Log In</button>
+        </form>
+        <p class="string">Don't have an account? <a href="signup.html">Sign Up</a></p>
+        <p class="string">Back to the previous page? <a href="/PROTTYPE - SE/Prototype PKM-KC (Web Version)/Home/index.html">Back</a></p>
+    </div>
+
+    <script>
+        function loginCheck() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            var storedUsers = JSON.parse(localStorage.getItem('users'));
+            var valid = 0;
+            var loggedInUser = null;
+            for (var i = 0; i < storedUsers.length; i++) {
+                if (username == storedUsers[i].userUsername) {
+                    valid = 1;
+                    if (password == storedUsers[i].userPassword) {
+                        valid = 2;
+                        loggedInUser = storedUsers[i];
+                        break;
+                    }
+                }
+            }
+            if (valid == 2) {
+                sessionStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
+                window.location.href = "/PROTTYPE%20-%20SE/Prototype%20PKM-KC%20(Web%20Version)/Volunteer/Main/home.html"; 
+            } file:
+            if (valid == 1) {
+                console.log("Your Password is not valid");
+                alert("Your Password is not valid");
+            }
+            if (valid == 0) {
+                console.log("Your Username is not valid");
+                alert("Your Username is not valid");
+            }
+        }
+    </script>
+</body>
+</html>
